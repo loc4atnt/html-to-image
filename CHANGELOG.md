@@ -1,3 +1,15 @@
+# v1.11.15 (Sat Sep 28 2024)
+
+#### 🐛 Bug Fix
+
+- Don't fail on empty images [#7](https://github.com/celtra/html-to-image/pull/7) ([@UsajMarko](https://github.com/UsajMarko))
+
+#### Authors: 1
+
+- [@UsajMarko](https://github.com/UsajMarko)
+
+---
+
 # v1.11.14 (Mon Sep 16 2024)
 
 #### 🐛 Bug Fix
