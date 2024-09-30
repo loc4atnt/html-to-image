@@ -44,9 +44,9 @@ async function embedImageNode<T extends HTMLElement | SVGImageElement>(
   // which has an empty value will return the current URL.
   // This is a workaround to prevent the loading of current page URL as an image when there are empty images in the DOM.
   if (
-    (isImageElement && clonedNode.getAttribute('src') === '') ||
+    (isImageElement && !clonedNode.getAttribute('src')) ||
     (isInstanceOfElement(clonedNode, SVGImageElement) &&
-      clonedNode.getAttribute('href') === '')
+      !clonedNode.getAttribute('href'))
   ) {
     return
   }
