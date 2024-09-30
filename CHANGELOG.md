@@ -1,3 +1,15 @@
+# v1.11.16 (Mon Sep 30 2024)
+
+#### 🐛 Bug Fix
+
+- Don't fail on missing src attribute [#8](https://github.com/celtra/html-to-image/pull/8) ([@UsajMarko](https://github.com/UsajMarko))
+
+#### Authors: 1
+
+- [@UsajMarko](https://github.com/UsajMarko)
+
+---
+
 # v1.11.15 (Sat Sep 28 2024)
 
 #### 🐛 Bug Fix
