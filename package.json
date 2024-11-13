@@ -1,6 +1,6 @@
 {
-  "name": "@celtra/html-to-image",
-  "version": "1.11.16",
+  "name": "@loc4atnt/html-to-image",
+  "version": "1.11.17",
   "description": "Generates an image from a DOM node using HTML5 canvas and SVG.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -53,17 +53,17 @@
   },
   "license": "MIT",
   "author": {
-    "name": "celtra",
-    "email": "developers@celtra.com"
+    "name": "loc4atnt",
+    "email": "developers@loc4atnt.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/celtra/html-to-image.git"
+    "url": "git+https://github.com/loc4atnt/html-to-image.git"
   },
   "bugs": {
-    "url": "https://github.com/celtra/html-to-image/issues"
+    "url": "https://github.com/loc4atnt/html-to-image/issues"
   },
-  "homepage": "https://github.com/celtra/html-to-image#readme",
+  "homepage": "https://github.com/loc4atnt/html-to-image#readme",
   "devDependencies": {
     "@bubkoo/commitlint-config": "^1.0.2",
     "@bubkoo/eslint-config": "^1.3.1",
