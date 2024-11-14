@@ -75,7 +75,7 @@ async function cloneChildren(nativeNode, clonedNode, options) {
     }), Promise.resolve());
     return clonedNode;
 }
-function cloneCSSStyle(nativeNode, clonedNode) {
+function cloneCSSStyle(nativeNode, clonedNode, options) {
     const targetStyle = clonedNode.style;
     if (!targetStyle) {
         return;
@@ -107,6 +107,12 @@ function cloneCSSStyle(nativeNode, clonedNode) {
             targetStyle.setProperty(name, value, sourceStyle.getPropertyPriority(name));
         });
     }
+    const manualAllStyle = options.allStyle;
+    if (manualAllStyle) {
+        Object.keys(manualAllStyle).forEach((key) => {
+            targetStyle[key] = manualAllStyle[key];
+        });
+    }
 }
 function cloneInputValue(nativeNode, clonedNode) {
     if (isInstanceOfElement(nativeNode, HTMLTextAreaElement)) {
@@ -125,9 +131,9 @@ function cloneSelectValue(nativeNode, clonedNode) {
         }
     }
 }
-function decorate(nativeNode, clonedNode) {
+function decorate(nativeNode, clonedNode, options) {
     if (isInstanceOfElement(clonedNode, Element)) {
-        cloneCSSStyle(nativeNode, clonedNode);
+        cloneCSSStyle(nativeNode, clonedNode, options);
         clonePseudoElements(nativeNode, clonedNode);
         cloneInputValue(nativeNode, clonedNode);
         cloneSelectValue(nativeNode, clonedNode);
@@ -178,7 +184,7 @@ export async function cloneNode(node, options, isRoot) {
     return Promise.resolve(node)
         .then((clonedNode) => cloneSingleNode(clonedNode, options))
         .then((clonedNode) => cloneChildren(node, clonedNode, options))
-        .then((clonedNode) => decorate(node, clonedNode))
+        .then((clonedNode) => decorate(node, clonedNode, options))
         .then((clonedNode) => ensureSVGSymbols(clonedNode, options));
 }
 //# sourceMappingURL=clone-node.js.map
