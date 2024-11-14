@@ -1,7 +1,6 @@
 import { Options } from './types'
 import { cloneNode } from './clone-node'
 import { embedImages } from './embed-images'
-import { applyStyle } from './apply-style'
 import { embedWebFonts, getWebFontCSS } from './embed-webfonts'
 import {
   getImageSize,
@@ -20,8 +19,7 @@ export async function toSvg<T extends HTMLElement>(
   const clonedNode = (await cloneNode(node, options, true)) as HTMLElement
   await embedWebFonts(clonedNode, options)
   await embedImages(clonedNode, options)
-  applyStyle(clonedNode, options)
-  console.log('clonedNode', clonedNode)
+  // applyStyle(clonedNode, options) // @loc4atnt: I need to style the root node before decorate it and its children, so I commented this line
   const datauri = await nodeToDataURL(clonedNode, width, height)
   return datauri
 }

@@ -1,6 +1,5 @@
 import { cloneNode } from './clone-node';
 import { embedImages } from './embed-images';
-import { applyStyle } from './apply-style';
 import { embedWebFonts, getWebFontCSS } from './embed-webfonts';
 import { getImageSize, getPixelRatio, createImage, canvasToBlob, nodeToDataURL, checkCanvasDimensions, } from './util';
 export async function toSvg(node, options = {}) {
@@ -8,8 +7,7 @@ export async function toSvg(node, options = {}) {
     const clonedNode = (await cloneNode(node, options, true));
     await embedWebFonts(clonedNode, options);
     await embedImages(clonedNode, options);
-    applyStyle(clonedNode, options);
-    console.log('clonedNode', clonedNode);
+    // applyStyle(clonedNode, options) // @loc4atnt: I need to style the root node before decorate it and its children, so I commented this line
     const datauri = await nodeToDataURL(clonedNode, width, height);
     return datauri;
 }
