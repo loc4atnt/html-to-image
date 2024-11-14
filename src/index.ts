@@ -1,14 +1,15 @@
-import { Options } from './types'
+import { applyStyle } from './apply-style'
 import { cloneNode } from './clone-node'
 import { embedImages } from './embed-images'
 import { embedWebFonts, getWebFontCSS } from './embed-webfonts'
+import { Options } from './types'
 import {
+  canvasToBlob,
+  checkCanvasDimensions,
+  createImage,
   getImageSize,
   getPixelRatio,
-  createImage,
-  canvasToBlob,
   nodeToDataURL,
-  checkCanvasDimensions,
 } from './util'
 
 export async function toSvg<T extends HTMLElement>(
@@ -19,7 +20,7 @@ export async function toSvg<T extends HTMLElement>(
   const clonedNode = (await cloneNode(node, options, true)) as HTMLElement
   await embedWebFonts(clonedNode, options)
   await embedImages(clonedNode, options)
-  // applyStyle(clonedNode, options) // @loc4atnt: I need to style the root node before decorate it and its children, so I commented this line
+  applyStyle(clonedNode, options)
   const datauri = await nodeToDataURL(clonedNode, width, height)
   return datauri
 }

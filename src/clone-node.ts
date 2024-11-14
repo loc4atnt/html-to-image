@@ -1,9 +1,8 @@
-import type { Options } from './types'
 import { clonePseudoElements } from './clone-pseudos'
-import { createImage, toArray, isInstanceOfElement } from './util'
-import { getMimeType } from './mimes'
 import { resourceToDataURL } from './dataurl'
-import { applyStyle } from './apply-style'
+import { getMimeType } from './mimes'
+import type { Options } from './types'
+import { createImage, isInstanceOfElement, toArray } from './util'
 
 async function cloneCanvasElement(canvas: HTMLCanvasElement) {
   const dataURL = canvas.toDataURL()
@@ -245,13 +244,7 @@ export async function cloneNode<T extends HTMLElement>(
 
   return Promise.resolve(node)
     .then((clonedNode) => cloneSingleNode(clonedNode, options) as Promise<T>)
-    .then((clonedNode) => {
-      // @loc4atnt: I need to style the root node before decorate it and its children
-      if (isRoot) {
-        applyStyle(clonedNode, options)
-      }
-      return cloneChildren(node, clonedNode, options)
-    })
+    .then((clonedNode) => cloneChildren(node, clonedNode, options))
     .then((clonedNode) => decorate(node, clonedNode))
     .then((clonedNode) => ensureSVGSymbols(clonedNode, options))
 }

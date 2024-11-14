@@ -1,13 +1,14 @@
+import { applyStyle } from './apply-style';
 import { cloneNode } from './clone-node';
 import { embedImages } from './embed-images';
 import { embedWebFonts, getWebFontCSS } from './embed-webfonts';
-import { getImageSize, getPixelRatio, createImage, canvasToBlob, nodeToDataURL, checkCanvasDimensions, } from './util';
+import { canvasToBlob, checkCanvasDimensions, createImage, getImageSize, getPixelRatio, nodeToDataURL, } from './util';
 export async function toSvg(node, options = {}) {
     const { width, height } = getImageSize(node, options);
     const clonedNode = (await cloneNode(node, options, true));
     await embedWebFonts(clonedNode, options);
     await embedImages(clonedNode, options);
-    // applyStyle(clonedNode, options) // @loc4atnt: I need to style the root node before decorate it and its children, so I commented this line
+    applyStyle(clonedNode, options);
     const datauri = await nodeToDataURL(clonedNode, width, height);
     return datauri;
 }
