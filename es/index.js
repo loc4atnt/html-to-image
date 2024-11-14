@@ -10,7 +10,7 @@ export async function toSvg(node, options = {}) {
     await embedImages(clonedNode, options);
     applyStyle(clonedNode, options);
     // eslint-disable-next-line no-console
-    console.log('clonedNode', clonedNode);
+    // console.log('clonedNode', clonedNode)
     const datauri = await nodeToDataURL(clonedNode, width, height);
     return datauri;
 }
